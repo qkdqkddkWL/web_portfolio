@@ -1,0 +1,41 @@
+@charset "UTF-8";
+
+.login-box {
+	position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.login-box .title{
+text-align: center;
+}
+
+.login-box input{
+	height: 30px;
+	width: 200px;
+	margin-bottom: 5px;
+}
+.login-box button{
+	margin-top:30px;
+	border: 0px;
+	background-color: CFF;
+	height: 30px;
+	width: 210px;
+	margin-bottom: 20px;
+}
+.login-box .WriteForm a{
+	color:gray;
+	text-decoration: underline;
+}
+.login-box .login-button span{
+font-weight: 700;
+}
+.login-box #login-Message{
+	color:red;
+	font-size: 10px;
+}
+
+hr{
+	text-align: center;
+	width:210px;
+}

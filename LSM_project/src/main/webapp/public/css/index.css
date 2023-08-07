@@ -1,0 +1,105 @@
+@charset "UTF-8";
+h2{
+text-align: center;
+}
+html,body{
+	min-width: 1000px;
+	min-width:1000px;
+	overflow-x:hidden; overflow-y:auto;
+}
+
+.home-wrap{
+	margin-top:0;
+	margin-bottom:20px;
+	position: relative;
+	width: 100%;
+	height:auto;
+	
+}
+#home-img{
+	height: 500px;
+    width: 2000px;
+    margin-bottom:200px;
+    object-fit: cover;
+}
+#home-text{
+	position: absolute;
+	top:42%;
+	left:50%;
+	transform:translate(-50%,-50%);
+}
+#search-box{
+	position: absolute;
+	top:58%;
+	left:50%;
+	transform:translate(-50%,-50%);
+
+	
+}
+#search-box input{
+  width: 400px;
+  height: 32px;
+  font-size: 15px;
+  border: 0;
+  border-radius: 15px;
+  outline: none;
+  padding-left: 10px;
+  background-color: white;
+
+}
+#home-text #title{
+font-family: fantasy;
+color: white;
+}
+
+.swiper-container {
+	width:1500px;
+	margin:auto;
+	position:relative;
+	height:280px;
+	border:3.7px solid silver;
+	border-radius:7px;
+	
+	overflow:hidden;
+}
+.swiper-container2 {
+	width:1500px;
+	margin: auto;
+	position:relative;
+	height:280px;
+	border:3.7px solid silver;
+	border-radius:7px;
+	margin-bottom:150px;
+	overflow:hidden;
+}
+
+
+.swiper-slide {
+	text-align:center;
+	display:flex; /* 내용을 중앙정렬 하기위해 flex 사용 */
+	justify-content:center; /* 좌우 기준 중앙정렬 */
+	width: 25%;
+	height: 100%;
+}
+.swiper-slide img{
+	
+	box-shadow:0 0 5px #555;	
+	height:250px;
+	width:360px;
+
+	
+}
+.swiper-slide a{
+	font-weight:800;
+	text-decoration:none;
+	color: black;
+}
+.swiper-button-next{
+position: absolute;
+ right: 1%;
+}
+.movie-list h2{
+ text-align: left;
+ margin-left: 40px;
+ font-weight: 900;
+}

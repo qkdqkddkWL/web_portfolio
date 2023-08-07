@@ -1,0 +1,52 @@
+@charset "UTF-8";
+
+    #recommnd-container{
+    	position:relative;
+    	width: 800px;
+		
+    }
+
+
+      /* 게시글 목록 테이블 */
+      #recommendList{ 
+        border-collapse: collapse;
+        margin-bottom: 50px;
+ 		position: absolute;
+ 		width:1200px;
+ 		left: 400px;
+ 		bottom:370px;
+      }
+
+      #recommendList a{
+      text-decoration: none;
+      color: black;
+      }
+
+      #recommendList thead{
+     	border-top:2.5px solid #444444;
+      	border-bottom:2.5px solid #444444;
+      }
+       #recommendList tbody tr{
+     	height: 80px;
+     	
+      }
+      
+
+      #recommendList  th, td {
+        padding: 10px;
+        text-align: center;
+      }
+
+      #recommendList tr,td{
+        border-bottom: 1px solid gray;
+    	padding: 10px;
+      }
+     #recommendList tr:first-child, td:first-child {
+    	border-left: none;
+  	}
+
+      #recommendList  th {
+        background-color: #F2F2F2;
+        font-weight: bold;
+      }
+

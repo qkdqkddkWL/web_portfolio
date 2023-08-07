@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mybatis.boardMapper">
+
+	<delete id="listDelete" parameterType="list">
+		delete review where id in (
+		<foreach collection="list" item="num" separator=",">
+       		#{num}
+        </foreach>
+        )
+	</delete>
+
+	<select id="adminReviewList" parameterType="map" resultType="boardDTO">
+		select *from
+		(select row_number() over (order by regdate desc) rown,review.*from review)
+		where rown between #{startNum} and #{endNum}
+
+	</select>
+	
+	<update id="adminAnswerWrite" parameterType="map">
+		update inqires set answerdate=sysdate,admin_id=#{admin_id},answer=#{content}  where id=#{id}
+	</update>
+	
+	<select id="admin_inqiresList"  resultType="InqiresDTO">
+		select *from inqires
+	</select>
+	
+	
+	<select id="inqiresList" parameterType="String" resultType="InqiresDTO">
+		select *from inqires where user_id=#{id}
+	</select>
+	
+	<insert id="inqiresWrite" parameterType="map">
+		insert into inqires values(inqires_sequence.nextval,#{id},null,#{question},sysdate,null,null)
+	</insert>
+	
+	
+	<select id="FAQList"  resultType="FAQDTO">
+		select *from FAQ
+	</select>	
+
+	<select id="memberList" parameterType="map" resultType="memberDTO">
+		select *from(
+		select ROW_NUMBER() OVER (order by rgdate)
+		rown,member.* FROM member) where rown between #{startNum} and #{endNum}
+	</select>	
+	
+	<select id="memberTotal" resultType="int">
+		select count(*) from member
+	</select>
+	
+	
+	
+	
+	<insert id="boardWrtie" parameterType="boardDTO" >
+		insert into review values(seq_review.nextval,#{title},#{genre},#{rating},#{content},0,sysdate,#{member_id})
+	</insert>
+
+	<insert id="imgUpload" parameterType="String">
+		insert into review_photo values(seq_review_photo.nextval,#{fileName},(select max(id) id from review))
+	</insert>
+	
+	<select id="boardList" resultType="boardDTO">
+		select * from(select row_number() over 
+				(order by regdate desc,id desc) rn,review.* from review where member_id=#{id})
+				where  rn between #{startNum} and #{endNum}
+	</select>
+
+	<select id="getImgs" parameterType="int" resultType="String">
+		select img from review_photo where review_id=#{id}
+	</select>
+
+	<select id="boardView" parameterType="int" resultType="boardDTO">
+		select *from review where id=#{id}
+	</select>
+	
+	<insert id="updateHit" parameterType="int">
+		update review set hit=hit+1 where id=#{seq}
+	</insert>
+	
+	<select id="reviewList" parameterType="map" resultType="lowerKeymap">
+	 	select list.id,list.title,list.img from (select rownum n,id,title,img from 
+				(select id,title,img from
+				(select row_number() over(partition by review.id order by review.id) 
+				rn, review.id, review.title, rp.img
+				from review left join review_photo rp
+				on review.id = rp.review_id) where rn=1 order by id desc)) list
+				where n between #{startNum} and #{endNum}
+	  
+	</select>
+	
+	
+	<select id="boasrdSearch"  parameterType="map" resultType="lowerKeymap">
+		select *from (select rownum rown,t.*from(
+				select *from(select row_number() over(PARTITION by review.id order by review.id)
+				rn, review.id, review.title, rp.img,review.regdate,review.member_id
+				from review left join review_photo rp
+				on review.id = rp.review_id) t where rn=1 and title like  '%' ||  #{content} || '%' order by regdate desc) t) 
+				where rown between #{startNum} and #{endNum}
+	</select>
+	
+	
+	<select id="searchWriter" parameterType="map" resultType="lowerKeymap">
+				select *from (select rownum rown,t.*from(
+				select *from(select row_number() over(PARTITION by review.id order by review.id)
+				rn, review.id, review.title, rp.img,review.regdate,review.member_id
+				from review left join review_photo rp
+				on review.id = rp.review_id) t where rn=1 and member_id like '%' ||  #{content} || '%' order by regdate desc) t)
+				where rown between #{startNum} and #{endNum}
+	</select>
+	
+	
+	
+	<select id="getTotal" resultType="int">
+		select  count(*) cnt from review
+	</select>
+	
+	<select id="getMyReviewTotal" parameterType="String" resultType="int">
+		select count(*) cnt from(select row_number() over
+		(order by regdate desc,id desc) rn,review.* from review) where member_id= #{id}
+	</select>
+	
+	<select id="searchtitleTotal" parameterType="String" resultType="int">
+		select  count(*) cnt from review where title like #{title}
+	</select>
+
+	<select id="searchwriterTotal" parameterType="String" resultType="int">
+		select  count(*) cnt from review where member_id like #{writer}
+	</select>
+	
+	<update id="insertReply_update" parameterType="replyDTO"  >
+		update review_reply set re_seq=re_seq+1 where re_ref=#{re_ref} and re_seq>#{re_seq}
+	</update>
+	
+	<insert id="insertReply_insert" parameterType="replyDTO"  >
+		insert into review_reply values(seq_reply.nextval,#{member_id},#{content},#{re_ref},#{re_seq}+1,#{re_lev}+1,sysdate)
+	</insert>
+	
+	<select id="replyView" parameterType="int" resultType="replyDTO">
+		select *from review_reply where re_ref=#{re_ref} order by re_seq
+	</select>
+	
+	<update id="replyModify" parameterType="replyDTO">
+		update review_reply set content=#{content} where re_ref=#{re_ref} and re_seq= #{re_seq}
+	</update>
+	
+	<select id="newestReviewList" resultType="lowerKeymap">
+	select list.id,list.title,list.img from (select rownum rown,t.*from(
+				select *from(select row_number() over(PARTITION by review.id order by review.id)
+				rn, review.id, review.title, rp.img,review.regdate
+				from review left join review_photo rp 
+				on review.id = rp.review_id) t where rn=1 order by regdate desc) t) list where rown between 1 and 12
+	</select>
+
+	<select id="RecommendReviewList" resultType="lowerKeymap">
+		 select *from(select row_number() over(
+				order by br.cnt desc nulls last,bw.regdate desc) rn,
+				bw.id,bw.title,bw.img,bw.regdate,br.cnt
+				from board_view bw left join board_recommend br
+				on bw.id=br.id) where rn between 1 and 12
+	
+	
+	</select>
+	
+	<insert id="insertRecommend" parameterType="map">
+		insert into recommend values(seq_recommend.nextval,#{seq},#{id})
+	</insert>
+
+	<select id="checkRecommend" parameterType="map" resultType="boolean">
+		select count(*) from recommend where board_id=#{seq} and member_id=#{id}
+	</select>
+	
+	<delete id="deleteRecommend" parameterType="map">
+		delete recommend where board_id=#{seq} and member_id=#{id}
+	</delete>
+	
+	<select id="getRecommendTotal" parameterType="int" resultType="int">
+		select count(board_id) cnt from recommend where board_id=#{seq}
+	</select>
+	
+	<update id="boardModify" parameterType="map">
+		update review set title=#{dto.title},genre=#{dto.genre},rating=#{dto.rating},content=#{dto.content} where id=#{seq}
+	</update>
+	
+	<delete id="imagesDelete" parameterType="int">
+		delete review_photo where review_id= #{id} 
+	</delete>
+	
+	<insert id="imageModify" parameterType="map">
+		insert into review_photo values(seq_review_photo.nextval,#{fileName},#{seq})
+	</insert>
+
+	<delete id="boardDelete" parameterType="int">
+		delete review where id=#{seq}
+	</delete>
+	
+	<select id="myRecommendList" parameterType="String" resultType="boardDTO">
+		select review.* from recommend
+		join review on recommend.board_id=review.id
+		where recommend.member_id=#{id}
+	</select>
+	
+
+	
+	
+	
+	<select id="genreReviewList" parameterType="map" resultType="lowerKeymap">
+		select *from (select rownum rown,t.*from(select *from(select row_number()
+				over(PARTITION by review.id order by review.id
+				) rn, review.id, review.title, rp.img,review.regdate,review.genre
+				from review left join review_photo rp 
+				on review.id = rp.review_id) t where rn=1 and genre=#{genre} order by regdate desc) t) where rown between #{startNum} and #{endNum}
+	</select>
+	
+	
+	<select id="getGenreTotal" parameterType="String" resultType="int">
+		select count(id) cnt from review where genre=#{genre}
+	</select>
+	
+	
+</mapper>

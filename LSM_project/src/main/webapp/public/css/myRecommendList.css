@@ -1,0 +1,55 @@
+@charset "UTF-8";
+
+    #recommnd-container{
+    	position:relative;
+    	width: 800px;
+		
+    }
+    #title-container{
+    position: relative;
+    width: 800px;
+    }
+
+      /* 게시글 목록 제목 */
+     #recommend-title {
+     	width:800px;
+        font-size: 36px;
+        font-weight: bold;
+        text-align: center;
+        margin-top: 50px;
+        margin-bottom:50px;
+        position: absolute;
+        bottom:750px;
+        left:650px;
+      }
+
+      /* 게시글 목록 테이블 */
+      #recommendList{
+        
+        
+        border-collapse: collapse;
+        margin-bottom: 50px;
+ 		position: absolute;
+ 		width:700px;
+ 		left: 700px;
+ 		bottom:550px;
+        
+      }
+      #recommendList a{
+      text-decoration: none;
+      color: black;
+      }
+
+      #recommendList  th, td {
+        padding: 10px;
+        text-align: center;
+      }
+
+      #recommendList  th {
+        background-color: #F2F2F2;
+        font-weight: bold;
+      }
+
+      #recommendList  tr:nth-child(even) {
+        background-color: #FAFAFA;
+      }

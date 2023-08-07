@@ -1,0 +1,35 @@
+@charset "UTF-8";
+
+
+.head-title {
+    font-size: 25px;
+    font-weight: 600;
+    letter-spacing: -0.6px;
+    text-align: center;
+    color: #212529;
+    margin-bottom: 20px;
+    font-family: LotteMartHappy;
+}
+#myreview-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ 	min-height:100vh;	
+    position: absolute;
+    top: 150px;
+    left: 780px;
+    
+
+}
+#myreview-container table{
+width: 600px;
+}
+.img{
+width: 100px;
+}
+
+.title{
+	text-align:center;
+	font-size: 26px;
+	text-decoration: none;
+}

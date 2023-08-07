@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+	
+	<context:property-placeholder location="classpath:/email/email.properties"/>
+	<!-- 디폴트로 classpath는 src/main/resources 로 설정되어 있음 -->
+	
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<!-- 각 property의 값 
+		host : 이메일 보낼 url을 입력
+		port : 포트 번호 입력
+		userName : 이메일을 보낼 아이디 입력
+		Password : 이메일 비번 -->
+		
+		<property name="host" value="smtp.gmail.com" />
+		<property name="port" value="587" />		<!-- gmail은 ssl : 465  tls: 587 포트번호 사용 -->
+		<property name="username" value="qkdqkddkwl1@gmail.com" />
+		<property name="password" value="grzaaywgisqtheut" />	<!-- g메인 2단계인증에서 생성된 비밀번호  -->
+		<property name="defaultEncoding" value="utf-8" />
+		<property name="javaMailProperties">
+			<props>
+                <prop key="mail.transport.protocol">smtp</prop>
+                <prop key="mail.smtp.auth">true</prop>
+                <!-- gmail의 경우 보안문제 업데이트로 인해 SSLSocketFactory를 추가해야 smtp 사용 가능. -->
+                <prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
+                <prop key="mail.smtp.starttls.enable">true</prop>
+                <prop key="mail.debug">true</prop>
+                <prop key="mail.smtp.ssl.trust">smtp.gmail.com</prop>
+				<prop key="mail.smtp.ssl.protocols">TLSv1.2</prop>
+            </props>
+		</property>
+	</bean>
+		
+		
+		
+		
+		
+	
+		
+</beans>

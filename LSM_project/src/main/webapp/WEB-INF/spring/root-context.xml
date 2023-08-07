@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<!-- db연동 외부의 .properties에 저장된 파일을 사용하고자 할때 스프링 bean으로 등록하거나 context처리기를 사용하여
+		등록해 사용할 수 있다 .properties의 값은 ${프로퍼티의 이름} 형식으로 꺼내서 사용 가능-->
+	<context:property-placeholder location="classpath:mybatis/db.properties"/>
+	
+	<!-- 데이터소스 설정 ,데이터소스: db 설정파일(url,id,passowrd)를 따로 관리 할수 있게 해주는 인터페이스  -->
+	<!-- spring-jdbc 디펜던시 추가해야함 -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> 
+	<!-- DriverManagerDataSource가 갖고 있는 setter들에 등록 -->	
+		<property name="driverClassName" value="${jdbc.driverClassName}"/>	
+		<property name="url" value="${jdbc.url}"/>
+      	<property name="username" value="${jdbc.username}"/>
+      	<property name="password" value="${jdbc.password}"/>
+	</bean> 
+
+
+
+	
+	
+	
+	
+	
+	
+	<!-- 마이바티스 -->
+	<!-- SqlSessionFactory  : sqlsession을 생성 및 관리해주는 객체-->
+	<bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="configLocation" value="classpath:mybatis/mybatis-config.xml"/>
+	</bean>
+	
+	<!-- SqlSessionTemplate :  실제 sqlSession , 인터페이스 구현, thread-safe, 트랙잭션 관리 용
+	     sqlsession과 기능적으론 동일하지만 개발자가 직접 SqlSession을 열고 닫을 필요 없이, 
+	     스프링 컨테이너가 관리하는 빈으로 SqlSession을 사용할 수 있다 ,생성자에서 매개변수로 sessionFactory 객체가 필요  -->
+   <bean class="org.mybatis.spring.SqlSessionTemplate">
+      <constructor-arg ref="sessionFactory"/>
+   </bean>
+</beans>

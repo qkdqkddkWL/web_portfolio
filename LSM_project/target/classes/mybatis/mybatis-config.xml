@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<!-- 클래스에 별명설정 -->
+	<typeAliases>
+		<typeAlias type="board.bean.BoardDTO" alias="boardDTO"/>
+		<typeAlias type="board.bean.ReplyDTO" alias="replyDTO"/>
+		<typeAlias type="board.bean.FAQDTO" alias="FAQDTO"/>
+		<typeAlias type="board.bean.InqiresDTO" alias="InqiresDTO"/>
+		<typeAlias type="member.bean.MemberDTO" alias="memberDTO"/>
+		<typeAlias type="com.my.LowerKeyMap.LowerKeyMap" alias="lowerKeymap"/>
+	</typeAliases>
+
+		<!-- SQL mapper설정 -->
+	<mappers>
+		<mapper resource="mybatis/board-mapping.xml" />
+		<mapper resource="mybatis/member-mapping.xml" />
+	</mappers>
+	
+ 
+
+</configuration>

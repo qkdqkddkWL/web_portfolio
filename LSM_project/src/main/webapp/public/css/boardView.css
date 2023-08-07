@@ -1,0 +1,237 @@
+@charset "UTF-8";
+#content-header{
+	width: 550px;
+	margin: auto;
+
+}
+#content{
+	width: 550px;
+	height:365px;
+	margin-bottom:50px;
+	margin: auto;
+
+}
+.swiper-container {
+	width:550px;
+	margin: auto;
+	margin-bottom:30px;
+	position:relative;
+	height:380px;
+	border:5px solid silver;
+	border-radius:7px;
+	box-shadow:0 0 20px #ccc inset;
+	 overflow:hidden;
+}
+.swiper-button-next{
+position: absolute;
+ right: 1%;
+}
+.swiper-slide {
+	text-align:center;
+	display:flex; 
+	align-items:center;
+	justify-content:center; 
+	
+	width: 100%;
+	height: 100%;
+}
+.swiper-slide img{
+	
+	box-shadow:0 0 5px #555;
+	height:380px;
+	width:100%;
+	max-width:100%; 
+	
+}
+.title-box span{
+	font-weight: 800;
+	font-size: 25px;
+}
+.gerne-box span{
+
+	font-weight: 800;
+	font-size: 16px;
+}
+.id-box{
+margin-top: 10px;
+}
+.id-box span{
+	font-weight: 800;
+	font-size: 16px;
+}
+
+hr{
+
+	color :gray;
+	display:block;
+	width:550px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top:30px;
+
+}
+.reply_hr{
+
+height: 1px; border: 0; background-color: #dcdcdc; margin-top: 6px;
+}
+#comment_hr{
+	margin-top: 100px;
+}
+
+
+
+
+
+
+#reply-form{
+	margin:auto;
+	width:550px;
+	margin-bottom: 200px;
+
+}
+#reply-form #reply{
+font-size: 20px;
+}
+
+p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+
+#reply-form #CommentWriter {
+	width:550px;
+	margin:auto;
+    padding: 0px 8px 8px 16px;
+    border: 2px solid #dcdcdc;
+    border-radius: 6px;
+    box-sizing: border-box;
+	height:120px;
+	
+}
+
+textarea::placeholder {
+  color: gray;
+}
+textarea:focus {
+    outline: none;
+}
+
+#replyContent{
+resize: none; 
+border: none; 
+width: 98%;
+height: 25px; 
+word-wrap: break-word; 
+font-size: 17px; 
+overflow: hidden;
+
+}
+
+
+
+.reply-button{
+font-size: 13px; 
+color: gray; 
+float: right; 
+text-decoration: none;
+}
+.modify-button{
+font-size: 13px; 
+color: gray; 
+margin-left:5px;
+float: right; 
+text-decoration: none;
+
+}
+#reply_submit{
+cursor:pointer; 
+outline: none; 
+float:right; 
+border: none; 
+background: none;  
+-webkit-appearance: none;
+color: gray;
+
+}
+#re_modify_submit{
+cursor:pointer; 
+outline: none; 
+float:right; 
+border: none; 
+background: none;  
+-webkit-appearance: none;
+color: gray;
+
+
+}
+
+
+textarea::placeholder {
+
+  color: gray;
+}
+.reply-button:hover{
+	cursor: pointer;
+}
+.modify-button:hover{
+	cursor: pointer;
+}
+
+.re_reply{
+    width: 550px;
+    margin: auto;
+    padding: 0px 8px 8px 16px;
+    border: 2px solid #dcdcdc;
+    border-radius: 6px;
+    box-sizing: border-box;
+    height: 120px;
+
+}
+.reply_modify{
+    width: 550px;
+    margin: auto;
+    padding: 0px 8px 8px 16px;
+    border: 2px solid #dcdcdc;
+    border-radius: 6px;
+    box-sizing: border-box;
+    height: 120px;
+
+
+}
+
+#re_reply_submit{
+cursor:pointer; 
+outline: none; 
+float:right; 
+border: none; 
+background: none;  
+-webkit-appearance: none;
+color: gray;
+
+}
+
+.user{
+margin-top: 8px;
+
+
+}
+#good-button:hover{
+
+filter: opacity(0.5) drop-shadow(0 0 0 #B9062F);
+}
+.change-button{
+float: right;
+
+}
+.change-button img{
+	width: 20px;
+	height: 20px;
+}
+.change-button a{
+text-decoration: none;
+color: black;
+}

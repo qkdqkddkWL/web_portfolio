@@ -1,0 +1,41 @@
+@charset "UTF-8";
+
+body {
+  font-family: Arial, sans-serif;
+  height: 100%; 
+  margin: 0; 
+}
+
+nav {
+  width:250px;
+  margin-bottom: 0;
+  height: 900px;
+  
+  background-color: #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+#mypage-ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#mypage-ul a {
+  display: block;
+  padding-left:35px;
+  padding-bottom: 15px;
+  padding-top:15px;
+  color: #333;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+#mypage-ul a:hover {
+  background-color: #e3e3e3;
+}
+
+#mypage-ul a.active {
+  background-color: #333;
+  color: #fff;
+}

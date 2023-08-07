@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+ 
+<tiles-definitions>
+
+	<!-- main layout -->
+	
+	<definition name="board.*" template="/WEB-INF/views/board/inc/layout.jsp">
+		<put-attribute name="header" value="/WEB-INF/views/include/header.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/board/{1}.jsp" />
+		<put-attribute name="js" value="/js/{1}.js"/>
+		<put-attribute name="css" value="/css/{1}.css"/>
+		<put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" />
+	</definition>
+	
+	
+		<!-- mypage layout -->
+	<definition name="mypage.*" template="/WEB-INF/views/board/inc/mypageLayout.jsp">	
+		<put-attribute name="header" value="/WEB-INF/views/include/header.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/board/myPage.jsp" />
+		<put-attribute name="js" value="/js/myPage.js"/>
+		<put-attribute name="css" value="/css/myPage.css"/>
+		<put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" />
+		<put-attribute name="content" value="/WEB-INF/views/mypage/{1}.jsp" />
+		<put-attribute name="contentjs" value="/js/{1}.js"/>
+		<put-attribute name="contentcss" value="/mypagecss/{1}.css"/>
+	</definition>
+	
+	
+			<!-- adminpage layout -->
+	<definition name="admin.*" template="/WEB-INF/views/board/inc/adminpageLayout.jsp">	
+		<put-attribute name="header" value="/WEB-INF/views/include/header.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/adminpage/admin_menu.jsp" />
+		<put-attribute name="js" value="/js/admin_menu.js"/>
+		<put-attribute name="css" value="/adminpagecss/admin_menu.css"/>
+		<put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" />
+		<put-attribute name="content" value="/WEB-INF/views/adminpage/{1}.jsp" />
+		<put-attribute name="contentjs" value="/js/adminpagejs/{1}.js"/>
+		<put-attribute name="contentcss" value="/adminpagecss/{1}.css"/>
+	</definition>
+	
+	
+
+
+</tiles-definitions>
