@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<!-- db연동 외부의 .properties에 저장된 파일을 사용하고자 할때 스프링 bean으로 등록하거나 context처리기를 사용하여
+		등록해 사용할 수 있다 .properties의 값은 ${프로퍼티의 이름} 형식으로 꺼내서 사용 가능-->
+	<context:property-placeholder location="classpath:mybatis/db.properties"/>
+	
+	<!-- 데이터소스 설정 ,데이터소스: db 설정파일(url,id,passowrd)를 따로 관리 할수 있게 해주는 인터페이스  -->
+	<!-- spring-jdbc 디펜던시 추가해야함 -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	<!-- DriverManagerDataSource가 갖고 있는 setter들에 등록 -->	
+		<property name="driverClassName" value="${jdbc.driverClassName}"/>	
+		<property name="url" value="${jdbc.url}"/>
+      	<property name="username" value="${jdbc.username}"/>
+      	<property name="password" value="${jdbc.password}"/>
+	</bean>
+	
+	<!-- 마이바티스 -->
+	<!-- SqlSessionFactory : 필수적으로 datasource와 configLocation 설정 
+		dataSource 속성은 데이터베이스 연결을 관리하는 DataSource 빈을 참조
+		configLocation 속성은 MyBatis의 설정 파일인 mybatis-config.xml의 위치를 설정
+																 -->
+	<bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="configLocation" value="classpath:mybatis/mybatis-config.xml"/>
+	</bean>
+	
+	<!-- SqlSession -->
+   <bean class="org.mybatis.spring.SqlSessionTemplate">
+      <constructor-arg ref="sessionFactory"/>
+   </bean>
+</beans>
